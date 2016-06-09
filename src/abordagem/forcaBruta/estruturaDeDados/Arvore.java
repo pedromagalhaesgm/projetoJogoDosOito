@@ -1,4 +1,4 @@
-package abordagem.forcaBruta.ed;
+package abordagem.forcaBruta.estruturaDeDados;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
 package principal;
 
-import abordagem.forcaBruta.ed.Arvore;
+import abordagem.forcaBruta.estruturaDeDados.Arvore;
 import modelo.Tabuleiro;
 import modelo.Unidade;
 
