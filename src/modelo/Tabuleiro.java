@@ -1,16 +1,27 @@
 package modelo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Tabuleiro {
 
 	private Unidade matriz[][];
 	private int ordem;
-	
+
 	public Tabuleiro(int tam) {
-		this.ordem = tam;
-		this.matriz = new Unidade[tam][tam];
+		ordem = tam;
+		matriz = new Unidade[tam][tam];
+	}
+
+	public Tabuleiro(int tam, Unidade[][] ma) {
+		ordem = tam;
+		matriz = new Unidade[tam][tam];
+		
+		for (int l = 0; l < ordem; l++) {
+			for (int c = 0; c < ordem; c++) {
+				matriz[l][c] = new Unidade(ma[l][c].getInf());
+				matriz[l][c].setColuna(ma[l][c].getColuna());
+				matriz[l][c].setLinha(ma[l][c].getLinha());
+			}
+		}
+		inicializaTabuleiro();
 	}
 
 	public Unidade[][] getMatriz() {
@@ -20,91 +31,7 @@ public class Tabuleiro {
 	public void setMatriz(Unidade[][] matriz) {
 		this.matriz = matriz;
 	}
-	/**
-	 * Analisa se o tabuleiro é otimo 
-	 * @param tabuleiro
-	 * @return
-	 */
-	public boolean analisaOtimo(Tabuleiro tabuleiro){
-		
-		for(int i = 0; i < tabuleiro.getOrdem(); i++){
-			for(int j = 0; j < tabuleiro.getOrdem(); j++){
-				if(tabuleiro.getMatriz()[i][j].getLinha()!=i || tabuleiro.getMatriz()[i][j].getColuna()!=j){
-					return false;
-				}
-			}
-		}
-		return true;
-	}
-	/**
-	 * Lista todos os filhos de uma determinado pai
-	 * @param pai
-	 * @return
-	 */
-	public List<Tabuleiro> gerarFilhos(Tabuleiro pai){
-		ArrayList<Tabuleiro> filhos = new ArrayList<>();
-		
-		Tabuleiro filho = new Tabuleiro(this.ordem);
-		filho.setMatriz(this.matriz);
-		
-		int linhaBranco = 0, colunaBranco = 0;
-		
-		//procura unidade branco
-		for(int i = 0; i < this.ordem; i++){
-			for(int j = 0; j < this.ordem; j++){
-				if(this.matriz[i][j].getInf().equals("branco")){
-					linhaBranco = i;
-					colunaBranco = j;
-					break;
-				}
-			}
-			if(this.matriz[linhaBranco][colunaBranco].getInf().equals("branco")){
-				break;
-			}
-		}
-		
-		if((linhaBranco - 1) >= 0 ){
-			Unidade aux = filho.matriz[linhaBranco - 1][colunaBranco];
-			filho.matriz[linhaBranco - 1][colunaBranco] = filho.matriz[linhaBranco][colunaBranco];
-			filho.matriz[linhaBranco][colunaBranco] = aux;
-			
-			filhos.add(filho);
-			
-			filho = new Tabuleiro(this.ordem);
-			filho.setMatriz(this.matriz);
-			
-		}
-		
-		if((linhaBranco + 1) < this.ordem ){
-			Unidade aux = filho.matriz[linhaBranco + 1][colunaBranco];
-			filho.matriz[linhaBranco + 1][colunaBranco] = filho.matriz[linhaBranco][colunaBranco];
-			filho.matriz[linhaBranco][colunaBranco] = aux;
-			
-			filhos.add(filho);
-			filho = new Tabuleiro(this.ordem);
-			filho.setMatriz(this.matriz);
-		}
-		if((colunaBranco - 1) >= 0 ){
-			Unidade aux = filho.matriz[linhaBranco][colunaBranco - 1];
-			filho.matriz[linhaBranco][colunaBranco - 1] = filho.matriz[linhaBranco][colunaBranco];
-			filho.matriz[linhaBranco][colunaBranco] = aux;
-			
-			filhos.add(filho);
-			filho = new Tabuleiro(this.ordem);
-			filho.setMatriz(this.matriz);
-		}
-		if((linhaBranco + 1) < this.ordem ){
-			Unidade aux = filho.matriz[linhaBranco][colunaBranco + 1];
-			filho.matriz[linhaBranco][colunaBranco + 1] = filho.matriz[linhaBranco][colunaBranco];
-			filho.matriz[linhaBranco][colunaBranco] = aux;
-			
-			filhos.add(filho);
-			
-		}
-		
-		return filhos;
-	}
-	
+
 	public int getOrdem() {
 		return ordem;
 	}
@@ -112,4 +39,73 @@ public class Tabuleiro {
 	public void setOrdem(int ordem) {
 		this.ordem = ordem;
 	}
+
+	/**
+	 * Inicializa a matriz
+	 */
+	private void inicializaTabuleiro() {
+		for (int l = 0; l < this.ordem; l++) {
+
+			for (int c = 0; c < this.ordem; c++) {
+
+				if (this.matriz[l][c].getInf() == 1) {
+					this.matriz[l][c].setLinha(0);
+					this.matriz[l][c].setColuna(0);
+				}
+				if (this.matriz[l][c].getInf() == 2) {
+					this.matriz[l][c].setLinha(0);
+					this.matriz[l][c].setColuna(1);
+				}
+				if (this.matriz[l][c].getInf() == 3) {
+					this.matriz[l][c].setLinha(0);
+					this.matriz[l][c].setColuna(2);
+				}
+				if (this.matriz[l][c].getInf() == 4) {
+					this.matriz[l][c].setLinha(1);
+					this.matriz[l][c].setColuna(0);
+				}
+				if (this.matriz[l][c].getInf() == 5) {
+					this.matriz[l][c].setLinha(1);
+					this.matriz[l][c].setColuna(1);
+				}
+				if (this.matriz[l][c].getInf() == 6) {
+					this.matriz[l][c].setLinha(1);
+					this.matriz[l][c].setColuna(2);
+				}
+				if (this.matriz[l][c].getInf() == 7) {
+					this.matriz[l][c].setLinha(2);
+					this.matriz[l][c].setColuna(0);
+				}
+				if (this.matriz[l][c].getInf() == 8) {
+					this.matriz[l][c].setLinha(2);
+					this.matriz[l][c].setColuna(1);
+				}
+				if (this.matriz[l][c].getInf() == -1) {
+					this.matriz[l][c].setLinha(2);
+					this.matriz[l][c].setColuna(2);
+				}
+
+			}
+
+		}
+	}
+
+	/**
+	 * Analisa se o tabuleiro é otimo
+	 * 
+	 * @param tabuleiro
+	 * @return
+	 */
+	public boolean analisaOtimo() {
+
+		for (int i = 0; i < this.getOrdem(); i++) {
+			for (int j = 0; j < this.getOrdem(); j++) {
+				if (this.getMatriz()[i][j].getLinha() != i || this.getMatriz()[i][j].getColuna() != j) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 }
