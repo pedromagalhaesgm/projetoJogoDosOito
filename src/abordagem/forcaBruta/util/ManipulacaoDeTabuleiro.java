@@ -5,6 +5,7 @@ import java.util.List;
 
 import modelo.Tabuleiro;
 import modelo.Unidade;
+// Projeto desenvolvido para entrevista
 
 public class ManipulacaoDeTabuleiro {
 

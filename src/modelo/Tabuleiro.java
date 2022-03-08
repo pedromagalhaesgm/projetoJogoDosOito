@@ -1,4 +1,5 @@
 package modelo;
+// Projeto desenvolvido para entrevista
 
 public class Tabuleiro {
 

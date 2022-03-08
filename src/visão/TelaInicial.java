@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import modelo.Unidade;
+// Projeto desenvolvido para entrevista
 
 @SuppressWarnings("serial")
 public class TelaInicial extends JFrame {

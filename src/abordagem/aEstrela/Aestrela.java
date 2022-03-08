@@ -8,6 +8,7 @@ import abordagem.forcaBruta.util.ManipulacaoDeTabuleiro;
 import modelo.NosExpandidos;
 import modelo.Tabuleiro;
 
+// Projeto desenvolvido para entrevista
 public class Aestrela {
 
 	public static ArrayList<Tabuleiro> buscaAEstrela(Tabuleiro raiz, int altura, TextArea text, NosExpandidos nosQnt) {

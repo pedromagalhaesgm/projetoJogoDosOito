@@ -10,6 +10,8 @@ import modelo.Tabuleiro;
 
 public class Gulosa {
 	// tabuleiro inicial
+	// Projeto desenvolvido para entrevista
+
 	/**
 	 * metodo busca gulosa retorna lista de expansões
 	 * 

@@ -28,6 +28,7 @@ import abordagem.forcaBruta.estruturaDeDados.profundidade.BuscaProfundidade;
 import modelo.NosExpandidos;
 import modelo.Tabuleiro;
 import modelo.Unidade;
+// Projeto desenvolvido para entrevista
 
 @SuppressWarnings("serial")
 public class TelaRelatorio extends JFrame {
